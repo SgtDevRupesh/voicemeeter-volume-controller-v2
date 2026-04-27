@@ -11,8 +11,8 @@ $artifactsDir = Join-Path $root "artifacts"
 $publishDir = Join-Path $artifactsDir "publish"
 $installerDir = Join-Path $artifactsDir "installer"
 $stageDir = Join-Path $installerDir "stage"
-$outputExe = Join-Path $installerDir "Install-VMWV-Modern.exe"
-$outputZip = Join-Path $installerDir "Install-VMWV-Modern.zip"
+$outputExe = Join-Path $installerDir "Install-VVC.exe"
+$outputZip = Join-Path $installerDir "Install-VVC.zip"
 $sedFile = Join-Path $installerDir "installer.sed"
 
 Write-Host "[Build] Cleaning artifacts"
@@ -76,7 +76,7 @@ InstallPrompt=
 DisplayLicense=
 FinishMessage=Installation complete.
 TargetName=$outputExe
-FriendlyName=VMWV Modern Installer
+FriendlyName=VVC Installer
 AppLaunched=install.cmd
 PostInstallCmd=<None>
 AdminQuietInstCmd=

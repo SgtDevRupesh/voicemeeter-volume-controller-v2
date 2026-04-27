@@ -5,7 +5,7 @@ namespace VMWV.Modern.Services;
 
 internal sealed class StartupTaskService
 {
-    private const string RunValueName = "VMWV.Modern";
+    private const string RunValueName = "VVC";
     private const string RunKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
     private readonly Action<string> _log;
 

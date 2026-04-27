@@ -1,14 +1,14 @@
 param(
-    [string]$InstallDir = "$env:APPDATA\VMWV.Modern"
+    [string]$InstallDir = "$env:APPDATA\VVC"
 )
 
 $ErrorActionPreference = "Stop"
 
-$appName = "Voicemeeter Windows Volume Modern"
+$appName = "VVC"
 $uninstallKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\$appName"
 
 function Stop-RunningProcesses {
-    foreach ($name in @("VMWV", "VMWV.Modern")) {
+    foreach ($name in @("VVC", "VMWV", "VMWV.Modern")) {
         try {
             Get-Process -Name $name -ErrorAction SilentlyContinue | Stop-Process -Force
         } catch {
@@ -26,18 +26,20 @@ function Remove-TaskIfExists {
 }
 
 Stop-RunningProcesses
-Remove-TaskIfExists -TaskName "VMWV.Modern"
+foreach ($taskName in @("VMWV.Modern", "VVC")) {
+    Remove-TaskIfExists -TaskName $taskName
+}
 
 if (Test-Path $InstallDir) {
     Remove-Item -Path $InstallDir -Recurse -Force
 }
 
-$startMenuDir = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\VMWV.Modern"
+$startMenuDir = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\VVC"
 if (Test-Path $startMenuDir) {
     Remove-Item -Path $startMenuDir -Recurse -Force
 }
 
-$desktopLink = Join-Path ([Environment]::GetFolderPath("Desktop")) "VMWV.Modern.lnk"
+$desktopLink = Join-Path ([Environment]::GetFolderPath("Desktop")) "VVC.lnk"
 if (Test-Path $desktopLink) {
     Remove-Item -Path $desktopLink -Force
 }

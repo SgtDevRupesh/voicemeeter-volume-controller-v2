@@ -1,4 +1,4 @@
-; VMWV.Modern Installer - Simple NSIS
+; VVC Installer - Simple NSIS
 !include "MUI2.nsh"
 !include "x64.nsh"
 
@@ -7,9 +7,9 @@
   !define OUTDIR "."
 !endif
 
-Name "VMWV.Modern"
-OutFile "${OUTDIR}\VMWV-Modern-Installer.exe"
-InstallDir "$APPDATA\VMWV.Modern"
+Name "VVC"
+OutFile "${OUTDIR}\VVC-Installer.exe"
+InstallDir "$APPDATA\VVC"
 RequestExecutionLevel user
 
 ; MUI Settings
@@ -32,7 +32,7 @@ Function .onInit
 FunctionEnd
 
 ; Installer sections
-Section "!Install VMWV.Modern" SecMain
+Section "!Install VVC" SecMain
   SectionIn RO  ; required, can't uncheck
   SetOutPath "$INSTDIR"
   
@@ -45,7 +45,7 @@ Section "!Install VMWV.Modern" SecMain
   File "installer\uninstall.ps1"
   WriteUninstaller "$INSTDIR\Uninstall.exe"
 
-  StrCpy $PsLog "$TEMP\VMWV-Modern-installer-console.log"
+  StrCpy $PsLog "$TEMP\VVC-installer-console.log"
   StrCpy $InstallArgs "-InstallDir $\"$INSTDIR$\" -LogFilePath $\"$PsLog$\""
 
   ${If} $LaunchAfter == "1"
@@ -61,7 +61,7 @@ Section "!Install VMWV.Modern" SecMain
   ${EndIf}
 SectionEnd
 
-Section "Launch VMWV.Modern after install" SecLaunch
+Section "Launch VVC after install" SecLaunch
   ; selected by default via SectionIn
   SectionIn 1
 SectionEnd
@@ -79,8 +79,8 @@ FunctionEnd
 
 ; Section descriptions shown on hover
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} "Installs VMWV.Modern to your AppData folder."
-  !insertmacro MUI_DESCRIPTION_TEXT ${SecLaunch} "Starts VMWV.Modern immediately after installation."
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} "Installs VVC to your AppData folder."
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecLaunch} "Starts VVC immediately after installation."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Section "Uninstall"

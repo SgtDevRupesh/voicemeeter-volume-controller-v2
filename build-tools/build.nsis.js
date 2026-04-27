@@ -52,8 +52,8 @@ try {
 }
 
 const appSrcDir = publishDir;
-if (!fs.existsSync(path.join(appSrcDir, "VMWV.Modern.exe"))) {
-  die("Published app is missing VMWV.Modern.exe.");
+if (!fs.existsSync(path.join(appSrcDir, "VVC.exe"))) {
+  die("Published app is missing VVC.exe.");
 }
 
 // Create payload.zip from the app binaries
@@ -93,7 +93,7 @@ if (!fs.existsSync(outDir)) {
 try {
   const output = execSync(`makensis.exe /DOUTDIR="${outDir}" "${nsiFile}"`, { encoding: "utf8", stderr: "pipe" });
   if (output) log(output);
-  const exePath = path.join(outDir, "VMWV-Modern-Installer.exe");
+  const exePath = path.join(outDir, "VVC-Installer.exe");
   log("✓ Installer created: " + exePath);
   log("=== BUILD SUCCESS ===");
   logStream.end();

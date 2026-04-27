@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>VVC</AssemblyName>
+    <Product>VVC</Product>
+    <Title>VVC</Title>
   </PropertyGroup>
 
 </Project>

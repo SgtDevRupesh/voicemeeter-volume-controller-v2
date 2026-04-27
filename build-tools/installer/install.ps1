@@ -1,5 +1,5 @@
 ﻿param(
-    [string]$InstallDir = "$env:APPDATA\VMWV.Modern",
+    [string]$InstallDir = "$env:APPDATA\VVC",
     [string]$LogFilePath,
     [switch]$RemoveNodeJsRuntime,
     [switch]$LaunchAfterInstall
@@ -8,10 +8,10 @@
 $ErrorActionPreference = "Stop"
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$appName = "Voicemeeter Windows Volume Modern"
+$appName = "VVC"
 $uninstallKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\$appName"
 $legacyTaskNames = @("voicemeeter-windows-volume")
-$newTaskNames = @("VMWV.Modern")
+$newTaskNames = @("VMWV.Modern", "VVC")
 
 # Always write logs to a stable user-local folder first, fallback to TEMP.
 if ($LogFilePath) {
@@ -24,7 +24,7 @@ if ($LogFilePath) {
     } catch {
     }
 } else {
-    $devLogsDir = Join-Path $env:LOCALAPPDATA "VMWV.Modern\dev-logs"
+    $devLogsDir = Join-Path $env:LOCALAPPDATA "VVC\dev-logs"
     try {
         New-Item -ItemType Directory -Path $devLogsDir -Force | Out-Null
     } catch {
@@ -49,7 +49,7 @@ function Write-Log {
 }
 
 function Stop-RunningProcesses {
-    foreach ($name in @("VMWV", "VMWV.Modern")) {
+    foreach ($name in @("VVC", "VMWV", "VMWV.Modern")) {
         try {
             Get-Process -Name $name -ErrorAction SilentlyContinue | Stop-Process -Force
         } catch {
@@ -149,23 +149,23 @@ Remove-Item $payloadZip -Force -ErrorAction SilentlyContinue
 
 Write-Log "Payload ready"
 
-$exePath = Join-Path $InstallDir "VMWV.Modern.exe"
+$exePath = Join-Path $InstallDir "VVC.exe"
 if (-not (Test-Path $exePath)) {
     throw "Install completed but executable was not found at $exePath"
 }
 
-$startMenuDir = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\VMWV.Modern"
+$startMenuDir = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\VVC"
 New-Item -ItemType Directory -Path $startMenuDir -Force | Out-Null
-Ensure-Shortcut -ShortcutPath (Join-Path $startMenuDir "VMWV.Modern.lnk") -TargetPath $exePath -WorkingDirectory $InstallDir
+Ensure-Shortcut -ShortcutPath (Join-Path $startMenuDir "VVC.lnk") -TargetPath $exePath -WorkingDirectory $InstallDir
 Ensure-Shortcut -ShortcutPath (Join-Path $startMenuDir "Uninstall.lnk") -TargetPath "powershell.exe" -WorkingDirectory $InstallDir
 
-$desktopLink = Join-Path ([Environment]::GetFolderPath("Desktop")) "VMWV.Modern.lnk"
+$desktopLink = Join-Path ([Environment]::GetFolderPath("Desktop")) "VVC.lnk"
 Ensure-Shortcut -ShortcutPath $desktopLink -TargetPath $exePath -WorkingDirectory $InstallDir
 
 New-Item -Path $uninstallKey -Force | Out-Null
 Set-ItemProperty -Path $uninstallKey -Name "DisplayName" -Value $appName
 Set-ItemProperty -Path $uninstallKey -Name "DisplayVersion" -Value "1.0.0"
-Set-ItemProperty -Path $uninstallKey -Name "Publisher" -Value "VMWV.Modern"
+Set-ItemProperty -Path $uninstallKey -Name "Publisher" -Value "VVC"
 Set-ItemProperty -Path $uninstallKey -Name "InstallLocation" -Value $InstallDir
 Set-ItemProperty -Path $uninstallKey -Name "DisplayIcon" -Value "$exePath,0"
 Set-ItemProperty -Path $uninstallKey -Name "UninstallString" -Value "powershell.exe -ExecutionPolicy Bypass -File `"$InstallDir\uninstall.ps1`" -InstallDir `"$InstallDir`""

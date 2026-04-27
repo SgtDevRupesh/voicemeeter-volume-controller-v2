@@ -7,7 +7,7 @@ static class Program
     [STAThread]
     static void Main()
     {
-        _singleInstanceMutex = new Mutex(initiallyOwned: true, name: "Global\\VMWV.Modern.Tray", createdNew: out var createdNew);
+        _singleInstanceMutex = new Mutex(initiallyOwned: true, name: "Global\\VVC.Tray", createdNew: out var createdNew);
         if (!createdNew)
         {
             _singleInstanceMutex.Dispose();
@@ -17,7 +17,7 @@ static class Program
 
         var logDirectory = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "VMWV.Modern",
+            "VVC",
             "logs"
         );
 
@@ -56,8 +56,8 @@ static class Program
             if (showMessageBox)
             {
                 MessageBox.Show(
-                    $"VMWV.Modern failed to start.\n\n{exception?.Message}\n\nSee: {logPath}",
-                    "VMWV.Modern Startup Error",
+                    $"VVC failed to start.\n\n{exception?.Message}\n\nSee: {logPath}",
+                    "VVC Startup Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );

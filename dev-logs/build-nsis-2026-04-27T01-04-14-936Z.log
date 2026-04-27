@@ -1,0 +1,31 @@
+[2026-04-27T01:04:14.939Z] === NSIS Build Started ===
+[2026-04-27T01:04:14.940Z] Log file: F:\Projects\Github\voicemeeter-volume-controller-v2\dev-logs\build-nsis-2026-04-27T01-04-14-936Z.log
+[2026-04-27T01:04:14.941Z] Preparing payload...
+[2026-04-27T01:04:14.941Z] Publishing fresh application binaries...
+[2026-04-27T01:04:17.728Z] Creating payload.zip from: F:\Projects\Github\voicemeeter-volume-controller-v2\artifacts\nsis-publish
+[2026-04-27T01:04:28.139Z] payload.zip created.
+[2026-04-27T01:04:28.139Z] Payload ready.
+[2026-04-27T01:04:28.192Z] Compiling installer with makensis...
+[2026-04-27T01:04:30.783Z] Command line defined: "OUTDIR=F:\Projects\Github\voicemeeter-volume-controller-v2\release"
+Processing config: C:\Program Files (x86)\NSIS\nsisconf.nsh
+Processing script file: "F:\Projects\Github\voicemeeter-volume-controller-v2\build-tools\installer.nsi" (ACP)
+
+Processed 1 file, writing output (x86-unicode):
+
+Output: "F:\Projects\Github\voicemeeter-volume-controller-v2\release\VVC-Installer.exe"
+Install: 5 pages (320 bytes), 2 sections (1 required) (4144 bytes), 435 instructions (12180 bytes), 206 strings (7198 bytes), 1 language table (330 bytes).
+Uninstall: 1 page (128 bytes), 1 section (2072 bytes), 3 instructions (84 bytes), 48 strings (1518 bytes), 1 language table (194 bytes).
+Datablock optimizer saved 1888 bytes (~0.0%).
+
+Using zlib compression.
+
+EXE header size:               54784 / 39936 bytes
+Install code:                   4272 / 24636 bytes
+Install data:               69550134 / 70041528 bytes
+Uninstall code+data:           10524 / 14846 bytes
+CRC (0x196241E1):                  4 / 4 bytes
+
+Total size:                 69619718 / 70120950 bytes (99.2%)
+
+[2026-04-27T01:04:30.783Z] ✓ Installer created: F:\Projects\Github\voicemeeter-volume-controller-v2\release\VVC-Installer.exe
+[2026-04-27T01:04:30.783Z] === BUILD SUCCESS ===

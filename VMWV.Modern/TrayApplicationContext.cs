@@ -54,13 +54,13 @@ internal sealed class TrayApplicationContext : ApplicationContext
     {
         var appDataDirectory = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "VMWV.Modern"
+            "VVC"
         );
         _settingsFilePath = Path.Combine(appDataDirectory, "settings.json");
         _logFilePath = Path.Combine(
             appDataDirectory,
             "logs",
-            "vmwv-modern.log"
+            "vvc.log"
         );
 
         RotateLogIfExists(_logFilePath);
@@ -288,7 +288,7 @@ internal sealed class TrayApplicationContext : ApplicationContext
         supportMenu.DropDownItems.Add(new ToolStripMenuItem("Open Logs Folder", null, (_, _) => OpenLogsFolder()));
 
         var menu = new ContextMenuStrip();
-        menu.Items.Add(new ToolStripMenuItem("VMWV.Modern") { Enabled = false });
+        menu.Items.Add(new ToolStripMenuItem("VVC") { Enabled = false });
         menu.Items.Add(bindingsMenu);
         menu.Items.Add(restartsMenu);
         menu.Items.Add(settingsMenu);
@@ -300,14 +300,14 @@ internal sealed class TrayApplicationContext : ApplicationContext
 
         _notifyIcon = new NotifyIcon
         {
-            Text = "Voicemeeter Windows Volume Modern",
+            Text = "VVC - Voicemeeter Volume Controller V2",
             Icon = (Icon)SystemIcons.Application.Clone(),
             Visible = true,
             ContextMenuStrip = menu,
         };
         _notifyIcon.DoubleClick += (_, _) => RestartAudioEngine("User Input");
 
-        Log("VMWV.Modern started.");
+        Log("VVC started.");
 
         if (_settings.StartWithWindows)
         {
@@ -808,12 +808,12 @@ internal sealed class TrayApplicationContext : ApplicationContext
         {
             var logDir = Path.GetDirectoryName(logFilePath)!;
             var stamp = File.GetLastWriteTime(logFilePath).ToString("yyyy-MM-dd_HH-mm-ss");
-            var archivedPath = Path.Combine(logDir, $"vmwv-modern-{stamp}.log");
+            var archivedPath = Path.Combine(logDir, $"vvc-{stamp}.log");
 
             // Avoid collision if two instances start within the same second
             if (File.Exists(archivedPath))
             {
-                archivedPath = Path.Combine(logDir, $"vmwv-modern-{stamp}-{Guid.NewGuid():N[..6]}.log");
+                archivedPath = Path.Combine(logDir, $"vvc-{stamp}-{Guid.NewGuid():N[..6]}.log");
             }
 
             File.Move(logFilePath, archivedPath);

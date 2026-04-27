@@ -1,4 +1,4 @@
-# VMWV.Modern (.NET)
+# VVC (.NET)
 
 This is a vanilla .NET migration scaffold for Voicemeeter Windows Volume.
 
@@ -12,9 +12,9 @@ This is a vanilla .NET migration scaffold for Voicemeeter Windows Volume.
   - Exit
 - Native Windows device-change notifications (`WM_DEVICECHANGE`) with on-demand count checks
 - Voicemeeter restart via native `VoicemeeterRemote64.dll` API (`VBVMR_Login`, `VBVMR_SetParameters`, `VBVMR_Logout`)
-- Settings persistence to `%LOCALAPPDATA%/VMWV.Modern/settings.json`
+- Settings persistence to `%LOCALAPPDATA%/VVC/settings.json`
 - Basic logging to:
-  - `%LOCALAPPDATA%/VMWV.Modern/logs/vmwv-modern.log`
+  - `%LOCALAPPDATA%/VVC/logs/vvc.log`
 
 ## What is not implemented yet
 
@@ -45,8 +45,8 @@ powershell -ExecutionPolicy Bypass -File .\build-tools\build.installer.ps1
 
 Artifacts are written to:
 
-- `artifacts\installer\Install-VMWV-Modern.exe` (IExpress EXE, when available)
-- `artifacts\installer\Install-VMWV-Modern.zip` (always generated fallback package)
+- `artifacts\installer\Install-VVC.exe` (IExpress EXE, when available)
+- `artifacts\installer\Install-VVC.zip` (always generated fallback package)
 
 ## Installer Migration Behavior
 
